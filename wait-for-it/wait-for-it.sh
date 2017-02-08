@@ -1,4 +1,4 @@
-# file run.sh
+# file wait-for-it.sh
 #!/bin/sh
 #HOST_PORT
 #HOST_ADDRESS
@@ -8,7 +8,7 @@ WAIT=0
 while ! nc -z $HOST_ADDRESS $HOST_PORT; do
   sleep 1
   WAIT=$(($WAIT + 1))
-  if [ "$WAIT" -gt 15 ]; then
+  if [ "$WAIT" -gt $TIME_OUT_SECONDS ]; then
      echo "Error: Timeout wating for Postgres to start"
      exit 1
   fi
